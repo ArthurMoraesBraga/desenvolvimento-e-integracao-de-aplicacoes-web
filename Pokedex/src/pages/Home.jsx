@@ -8,7 +8,7 @@
 
     const types = data.types.filter((t) => t.name !== 'Typeless')
 
-    export default function Home() {
+    export default function Home({ favorites }) {
     const [search, setSearch] = useState('')
     const [type, setType] = useState('all')
     const [selected, setSelected] = useState(null)
@@ -47,12 +47,19 @@
             {filtered.length} de {data.pokemon.length} Pokémon
         </p>
 
-        <PokemonList pokemon={filtered} onSelect={setSelected} />
+        <PokemonList
+            pokemon={filtered}
+            onSelect={setSelected}
+            isFavorite={favorites?.isFavorite}
+            onToggleFavorite={favorites?.toggleFavorite}
+        />
 
         {selected && (
             <PokemonDetails
             pokemon={selected}
+            allPokemon={data.pokemon}
             onClose={() => setSelected(null)}
+            onSelect={setSelected}
             />
         )}
         </div>

@@ -1,6 +1,12 @@
     import './Header.css'
 
-    export default function Header({ page, onNavigate, dark, onToggleTheme }) {
+    export default function Header({
+    page,
+    onNavigate,
+    dark,
+    onToggleTheme,
+    favoritesCount = 0,
+    }) {
     return (
         <header className="header">
         <div className="header-brand">
@@ -20,6 +26,15 @@
             onClick={() => onNavigate('trainers')}
             >
             Treinadores
+            </button>
+            <button
+            className={page === 'favorites' ? 'active' : ''}
+            onClick={() => onNavigate('favorites')}
+            >
+            ❤️ Favoritos
+            {favoritesCount > 0 && (
+                <span className="header-badge">{favoritesCount}</span>
+            )}
             </button>
         </nav>
 

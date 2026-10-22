@@ -22,7 +22,12 @@
 	)
 	}
 
-	export default function PokemonCard({ pokemon, onSelect }) {
+	export default function PokemonCard({
+	pokemon,
+	onSelect,
+	isFavorite = false,
+	onToggleFavorite,
+	}) {
 	const mainType = pokemon.types[0]?.name.toLowerCase() ?? 'normal'
 
 	return (
@@ -35,6 +40,23 @@
 		<span className="pokemon-card-id">
 			#{String(pokemon.id).padStart(3, '0')}
 		</span>
+
+		{onToggleFavorite && (
+			<button
+			type="button"
+			className={`fav-btn ${isFavorite ? 'is-fav' : ''}`}
+			aria-label={
+				isFavorite ? 'Remover dos favoritos' : 'Adicionar aos favoritos'
+			}
+			aria-pressed={isFavorite}
+			onClick={(e) => {
+				e.stopPropagation()
+				onToggleFavorite(pokemon)
+			}}
+			>
+			{isFavorite ? '❤️' : '🤍'}
+			</button>
+		)}
 
 		<img
 			src={pokemonImage(pokemon.id)}
