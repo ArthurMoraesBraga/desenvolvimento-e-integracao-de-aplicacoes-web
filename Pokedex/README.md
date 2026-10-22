@@ -1,16 +1,91 @@
-# React + Vite
+# Pokédex Kanto
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicação web (React + Vite) que exibe os 151 Pokémon da região de Kanto com
+busca, tela de detalhes, seção de treinadores e insígnias.
 
-Currently, two official plugins are available:
+## Como rodar
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Pré-requisitos: Node.js 18+ e npm.
 
-## React Compiler
+```bash
+npm install     # instala as dependências
+npm run dev     # sobe o servidor de desenvolvimento (http://localhost:5173)
+npm run build   # gera a build de produção em dist/
+npm run preview # pré-visualiza a build de produção
+npm run lint    # roda o ESLint
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Estrutura
 
-## Expanding the ESLint configuration
+```
+Pokedex/
+├─ public/                 # favicon e ícones estáticos
+├─ src/
+│  ├─ components/
+│  │  ├─ PokemonModal.jsx   # modal de detalhes do Pokémon
+│  │  ├─ PokemonModal.css
+│  │  ├─ TrainersSection.jsx# seção de treinadores e insígnias
+│  │  └─ TrainersSection.css
+│  ├─ data/
+│  │  ├─ pokedex-data.json  # 151 Pokémon (stats + tipos) e os 18 tipos
+│  │  └─ trainers-data.json # líderes de ginásio, insígnias e times
+│  ├─ utils/
+│  │  └─ pokemon.js         # helpers: sprites, cores de tipo, relacionados
+│  ├─ App.jsx               # monta busca + grid + modal + treinadores
+│  ├─ App.css
+│  ├─ index.css
+│  └─ main.jsx
+└─ index.html
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Funcionalidades
+
+### Detalhes do Pokémon (modal)
+
+Clicar em qualquer card abre o `PokemonModal`, com:
+
+- Arte oficial em alta resolução (PokéAPI), com fallback para o sprite menor.
+- Número da Pokédex e tipos coloridos.
+- Estatísticas base (HP, Ataque, Defesa, Ataque Esp., Defesa Esp., Velocidade)
+  em barras de progresso, mais o total.
+- Pokémon relacionados (mesmo tipo e próximos na numeração), clicáveis para
+  navegar entre eles sem fechar o modal.
+- Fecha com a tecla `Esc`, clique no fundo ou no botão ×.
+
+### Treinadores e insígnias
+
+A seção `TrainersSection` lista os líderes de ginásio de Kanto. Cada card traz
+o nome, a cidade, o tipo de especialidade, a insígnia e o time de Pokémon.
+Clicar em um Pokémon do time abre o modal de detalhes correspondente.
+
+### Imagens
+
+As imagens vêm dos sprites oficiais da [PokéAPI](https://github.com/PokeAPI/sprites),
+resolvidas pelo `id` do Pokémon. Não é necessário armazenar imagens localmente.
+
+## Integração entre os integrantes
+
+O `App.jsx` foi montado para receber os componentes de lista e busca dos demais
+integrantes com o mínimo de atrito. Os pontos de integração estão marcados com
+comentários `=== PONTO DE INTEGRAÇÃO ===`:
+
+- **Busca**: substituir o `<input>` por um componente `SearchBar` mantendo o
+  estado `query`/`setQuery`.
+- **Lista/cards**: substituir o grid por um componente `PokemonList` que receba
+  `pokemon={filtered}` e chame `setSelected(pokemon)` no clique de cada card.
+
+O contrato essencial para abrir os detalhes é chamar `setSelected(pokemon)`,
+passando o objeto do Pokémon (com `id`, `name`, `stats`, `types`).
+
+## Dados
+
+- `pokedex-data.json`: 151 Pokémon com `id`, `name`, `stats` e `types`, além da
+  lista dos 18 tipos.
+- `trainers-data.json`: treinadores com `name`, `city`, `role`, `specialtyType`,
+  `badge` (nome e cor) e `pokemonIds` (referência aos Pokémon pelo `id`).
+
+## Stack
+
+- React 19
+- Vite 8
+- ESLint
