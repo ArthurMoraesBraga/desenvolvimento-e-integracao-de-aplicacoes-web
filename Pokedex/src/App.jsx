@@ -1,121 +1,100 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
+import { useMemo, useState } from 'react'
+import pokedexData from './data/pokedex-data.json'
+import { getSpriteUrl, getTypeColor, formatDexNumber } from './utils/pokemon.js'
+import PokemonModal from './components/PokemonModal.jsx'
+import TrainersSection from './components/TrainersSection.jsx'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const allPokemon = pokedexData.pokemon
+
+  // Pokémon atualmente aberto no modal de detalhes (null = modal fechado).
+  const [selected, setSelected] = useState(null)
+
+  // Busca simples embutida. Quando o Integrante de busca subir o SearchBar,
+  // basta substituir este input pelo componente dele e manter o estado `query`.
+  const [query, setQuery] = useState('')
+
+  const filtered = useMemo(() => {
+    const term = query.trim().toLowerCase()
+    if (!term) return allPokemon
+    return allPokemon.filter(
+      (p) =>
+        p.name.toLowerCase().includes(term) ||
+        String(p.id) === term ||
+        formatDexNumber(p.id).includes(term),
+    )
+  }, [query, allPokemon])
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+    <div className="app">
+      <header className="app-header">
+        <h1>Pokédex Kanto</h1>
+        <p>151 Pokémon · detalhes, treinadores e insígnias</p>
+      </header>
 
-      <div className="ticks"></div>
+      {/* === PONTO DE INTEGRAÇÃO (busca) ===
+          Substituir por <SearchBar value={query} onChange={setQuery} /> do
+          integrante responsável pela busca. */}
+      <div className="search-wrap">
+        <input
+          type="search"
+          className="search-input"
+          placeholder="Buscar por nome ou número..."
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          aria-label="Buscar Pokémon"
+        />
+      </div>
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+      {/* === PONTO DE INTEGRAÇÃO (lista/cards) ===
+          Substituir por <PokemonList pokemon={filtered} onSelect={setSelected} />
+          do integrante da lista. O essencial é chamar setSelected(pokemon)
+          ao clicar num card, que é o que dispara o modal de detalhes. */}
+      <main className="pokemon-grid">
+        {filtered.map((pokemon) => (
+          <button
+            type="button"
+            key={pokemon.id}
+            className="pokemon-card"
+            onClick={() => setSelected(pokemon)}
+          >
+            <span className="card-dex">{formatDexNumber(pokemon.id)}</span>
+            <img
+              className="card-sprite"
+              src={getSpriteUrl(pokemon.id)}
+              alt={pokemon.name}
+              loading="lazy"
+            />
+            <span className="card-name">{pokemon.name}</span>
+            <span className="card-types">
+              {pokemon.types.map((t) => (
+                <span
+                  key={t.id}
+                  className="card-type-dot"
+                  title={t.name}
+                  style={{ backgroundColor: getTypeColor(t.name) }}
+                />
+              ))}
+            </span>
+          </button>
+        ))}
+        {filtered.length === 0 && (
+          <p className="empty-msg">Nenhum Pokémon encontrado.</p>
+        )}
+      </main>
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
+      {/* Seção de treinadores e insígnias (Integrante 3). */}
+      <TrainersSection allPokemon={allPokemon} onSelectPokemon={setSelected} />
+
+      {/* Modal de detalhes (Integrante 3). */}
+      <PokemonModal
+        pokemon={selected}
+        allPokemon={allPokemon}
+        onClose={() => setSelected(null)}
+        onSelect={setSelected}
+      />
+    </div>
   )
 }
 
