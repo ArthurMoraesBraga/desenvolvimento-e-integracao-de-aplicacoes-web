@@ -1,6 +1,9 @@
 
 .pokemon-card {
 	background: white;
+	/* Cor de texto fixa: o card tem fundo branco em ambos os temas, então o
+	   texto precisa ser escuro e não herdar o --text claro do modo dark. */
+	color: #1c1e2e;
 	border-radius: 16px;
 	padding: 20px;
 	text-align: center;
@@ -19,20 +22,52 @@
 	object-fit: contain;
 }
 
-.pokemon-card h2 {
+.pokemon-card h3 {
 	font-size: 22px;
 	text-transform: capitalize;
+	color: #1c1e2e;
+	margin: 4px 0;
 }
 
-.pokemon-types {
+/* Número da Pokédex: um cinza escuro suave, legível sobre o branco. */
+.pokemon-card-id {
+	display: block;
+	font-weight: 700;
+	color: #8a90a6;
+	font-size: 0.85rem;
+}
+
+.pokemon-card-types {
 	display: flex;
 	justify-content: center;
 	gap: 8px;
+	margin: 8px 0;
 }
 
-.pokemon-types span {
-	background: #e5e7eb;
-	border-radius: 20px;
-	padding: 6px 12px;
-	font-size: 13px;
+/* Lista de stats: rótulo em cinza escuro, valor em quase preto. */
+.pokemon-card-stats {
+	margin: 12px 0 0;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 6px 10px;
+}
+
+.pokemon-card-stats div {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.pokemon-card-stats dt {
+	font-size: 0.7rem;
+	font-weight: 700;
+	letter-spacing: 0.03em;
+	color: #6b7280;
+}
+
+.pokemon-card-stats dd {
+	margin: 0;
+	font-size: 0.95rem;
+	font-weight: 600;
+	color: #1c1e2e;
 }
