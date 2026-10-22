@@ -1,0 +1,122 @@
+.trainers-section {
+  max-width: 1100px;
+  margin: 3rem auto 2rem;
+  padding: 0 1rem;
+}
+
+.trainers-title {
+  text-align: center;
+  font-size: 1.8rem;
+  margin: 0;
+  color: #1a1a2e;
+}
+
+.trainers-subtitle {
+  text-align: center;
+  color: #666;
+  margin: 0.25rem 0 1.5rem;
+}
+
+.trainers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.trainer-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 1rem;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.trainer-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.trainer-name {
+  margin: 0;
+  font-size: 1.15rem;
+  color: #1a1a2e;
+}
+
+.trainer-city {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+.trainer-badge {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 1.1rem;
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.5),
+    0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.trainer-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.trainer-type {
+  padding: 0.15rem 0.7rem;
+  border-radius: 999px;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+}
+
+.trainer-role {
+  font-size: 0.78rem;
+  color: #777;
+}
+
+.trainer-badge-name {
+  margin: 0;
+  font-size: 0.82rem;
+  color: #555;
+  font-style: italic;
+}
+
+.trainer-team {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: auto;
+  padding-top: 0.5rem;
+  border-top: 1px solid #f0f0f0;
+}
+
+.team-member {
+  width: 52px;
+  height: 52px;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  background: #fafafa;
+  cursor: pointer;
+  padding: 2px;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.team-member:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.team-member img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}

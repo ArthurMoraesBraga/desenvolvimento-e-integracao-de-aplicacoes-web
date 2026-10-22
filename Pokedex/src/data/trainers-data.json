@@ -1,0 +1,112 @@
+{
+  "trainers": [
+    {
+      "id": 1,
+      "name": "Brock",
+      "city": "Pewter City",
+      "role": "Líder de Ginásio",
+      "specialtyType": "Rock",
+      "badge": {
+        "name": "Insígnia Pedra",
+        "color": "#b8a038"
+      },
+      "pokemonIds": [74, 95]
+    },
+    {
+      "id": 2,
+      "name": "Misty",
+      "city": "Cerulean City",
+      "role": "Líder de Ginásio",
+      "specialtyType": "Water",
+      "badge": {
+        "name": "Insígnia Cascata",
+        "color": "#6890f0"
+      },
+      "pokemonIds": [120, 121]
+    },
+    {
+      "id": 3,
+      "name": "Lt. Surge",
+      "city": "Vermilion City",
+      "role": "Líder de Ginásio",
+      "specialtyType": "Electric",
+      "badge": {
+        "name": "Insígnia Trovão",
+        "color": "#f8d030"
+      },
+      "pokemonIds": [100, 25, 26]
+    },
+    {
+      "id": 4,
+      "name": "Erika",
+      "city": "Celadon City",
+      "role": "Líder de Ginásio",
+      "specialtyType": "Grass",
+      "badge": {
+        "name": "Insígnia Arco-íris",
+        "color": "#78c850"
+      },
+      "pokemonIds": [71, 114, 45]
+    },
+    {
+      "id": 5,
+      "name": "Koga",
+      "city": "Fuchsia City",
+      "role": "Líder de Ginásio",
+      "specialtyType": "Poison",
+      "badge": {
+        "name": "Insígnia Alma",
+        "color": "#a040a0"
+      },
+      "pokemonIds": [109, 110, 89]
+    },
+    {
+      "id": 6,
+      "name": "Sabrina",
+      "city": "Saffron City",
+      "role": "Líder de Ginásio",
+      "specialtyType": "Psychic",
+      "badge": {
+        "name": "Insígnia Pântano",
+        "color": "#f85888"
+      },
+      "pokemonIds": [64, 65, 122]
+    },
+    {
+      "id": 7,
+      "name": "Blaine",
+      "city": "Cinnabar Island",
+      "role": "Líder de Ginásio",
+      "specialtyType": "Fire",
+      "badge": {
+        "name": "Insígnia Vulcão",
+        "color": "#f08030"
+      },
+      "pokemonIds": [58, 59, 78]
+    },
+    {
+      "id": 8,
+      "name": "Giovanni",
+      "city": "Viridian City",
+      "role": "Líder de Ginásio",
+      "specialtyType": "Ground",
+      "badge": {
+        "name": "Insígnia Terra",
+        "color": "#e0c068"
+      },
+      "pokemonIds": [112, 51, 31, 34]
+    },
+    {
+      "id": 9,
+      "name": "Lance",
+      "city": "Indigo Plateau",
+      "role": "Elite dos Quatro / Dragões",
+      "specialtyType": "Dragon",
+      "badge": {
+        "name": "Elite dos Quatro",
+        "color": "#7038f8"
+      },
+      "pokemonIds": [149, 148, 130]
+    }
+  ]
+}
