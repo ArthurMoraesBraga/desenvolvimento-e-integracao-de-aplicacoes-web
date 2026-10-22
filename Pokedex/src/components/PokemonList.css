@@ -1,0 +1,32 @@
+    .pokemon-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 18px;
+    }
+
+    .pokemon-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 64px 16px;
+    text-align: center;
+    color: var(--muted);
+    }
+
+    .pokemon-empty span {
+    font-size: 3rem;
+    }
+
+    .pokemon-empty p {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text);
+    }
+
+    @media (max-width: 480px) {
+    .pokemon-list {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+    }

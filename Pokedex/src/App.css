@@ -1,107 +1,32 @@
 .app {
   min-height: 100vh;
-  padding-bottom: 3rem;
+  background: var(--bg);
+  color: var(--text);
+  transition: background 0.3s, color 0.3s;
 }
 
-.app-header {
-  text-align: center;
-  padding: 2rem 1rem 1rem;
+.app.dark {
+  --bg: #12131a;
+  --surface: #1e2030;
+  --surface-2: #2a2d44;
+  --text: #f1f2f8;
+  --muted: #9aa0bd;
+  --border: #353958;
+  --accent: #ef4444;
 }
 
-.app-header h1 {
-  margin: 0;
-  font-size: 2.2rem;
-  color: #1a1a2e;
+.app.light {
+  --bg: #f2f4fb;
+  --surface: #ffffff;
+  --surface-2: #e8ebf7;
+  --text: #1c1e2e;
+  --muted: #5c627f;
+  --border: #d6daec;
+  --accent: #dc2626;
 }
 
-.app-header p {
-  margin: 0.25rem 0 0;
-  color: #666;
-}
-
-.search-wrap {
-  display: flex;
-  justify-content: center;
-  padding: 0 1rem 1.5rem;
-}
-
-.search-input {
-  width: 100%;
-  max-width: 420px;
-  padding: 0.7rem 1rem;
-  border: 2px solid #e0e0e0;
-  border-radius: 999px;
-  font-size: 1rem;
-  outline: none;
-  transition: border-color 0.15s ease;
-}
-
-.search-input:focus {
-  border-color: #6890f0;
-}
-
-.pokemon-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  gap: 1rem;
-  max-width: 1100px;
+.app-main {
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1rem;
-}
-
-.pokemon-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.25rem;
-  padding: 0.75rem;
-  background: #fff;
-  border: 1px solid #eee;
-  border-radius: 14px;
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-  transition: transform 0.12s ease, box-shadow 0.12s ease;
-}
-
-.pokemon-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-}
-
-.card-dex {
-  align-self: flex-end;
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: #bbb;
-}
-
-.card-sprite {
-  width: 96px;
-  height: 96px;
-  object-fit: contain;
-}
-
-.card-name {
-  font-weight: 600;
-  text-transform: capitalize;
-  color: #222;
-}
-
-.card-types {
-  display: flex;
-  gap: 0.3rem;
-}
-
-.card-type-dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  display: inline-block;
-}
-
-.empty-msg {
-  grid-column: 1 / -1;
-  text-align: center;
-  color: #888;
-  padding: 2rem 0;
+  padding: 24px 16px 48px;
 }

@@ -1,38 +1,39 @@
-:root {
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-
-  font: 16px/1.5 var(--sans);
-  color: #1a1a2e;
-  background: #f2f4f8;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  margin: 0;
-  min-height: 100vh;
-  background: #f2f4f8;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
-#root {
-  width: 100%;
-  min-height: 100vh;
-}
+button { font-family: inherit; cursor: pointer; }
 
-h1,
-h2,
-h3 {
-  font-family: var(--sans);
-}
+/* Cores por tipo (usadas por cards, badges e filtros) */
+.type-normal   { --type: #a8a878; }
+.type-fire     { --type: #f08030; }
+.type-water    { --type: #6890f0; }
+.type-grass    { --type: #78c850; }
+.type-electric { --type: #f8d030; }
+.type-ice      { --type: #98d8d8; }
+.type-fighting { --type: #c03028; }
+.type-poison   { --type: #a040a0; }
+.type-ground   { --type: #e0c068; }
+.type-flying   { --type: #a890f0; }
+.type-psychic  { --type: #f85888; }
+.type-bug      { --type: #a8b820; }
+.type-rock     { --type: #b8a038; }
+.type-ghost    { --type: #705898; }
+.type-dark     { --type: #705848; }
+.type-dragon   { --type: #7038f8; }
+.type-steel    { --type: #b8b8d0; }
+.type-typeless { --type: #68a090; }
 
-p {
-  margin: 0;
-}
-
-button {
-  font-family: inherit;
+.type-badge {
+  display: inline-block;
+  padding: 3px 12px;
+  border-radius: 999px;
+  background: var(--type, #888);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
 }
