@@ -1,0 +1,108 @@
+
+.pokemon-card {
+	position: relative;
+	background: white;
+	/* Cor de texto fixa: o card tem fundo branco em ambos os temas, então o
+	   texto precisa ser escuro e não herdar o --text claro do modo dark. */
+	color: #1c1e2e;
+	border-radius: 16px;
+	padding: 20px;
+	text-align: center;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+	cursor: pointer;
+	transition: transform 0.3s ease;
+}
+
+/* Botão de favoritar no canto superior direito do card. */
+.fav-btn {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	width: 36px;
+	height: 36px;
+	display: grid;
+	place-items: center;
+	border: none;
+	border-radius: 50%;
+	background: rgba(0, 0, 0, 0.05);
+	font-size: 1.1rem;
+	line-height: 1;
+	cursor: pointer;
+	transition: transform 0.15s ease, background 0.2s ease;
+}
+
+.fav-btn:hover {
+	transform: scale(1.15);
+	background: rgba(0, 0, 0, 0.1);
+}
+
+.fav-btn.is-fav {
+	background: rgba(220, 38, 38, 0.12);
+	animation: fav-pop 0.3s ease;
+}
+
+@keyframes fav-pop {
+	0% { transform: scale(0.7); }
+	60% { transform: scale(1.25); }
+	100% { transform: scale(1); }
+}
+
+.pokemon-card:hover {
+	transform: translateY(-6px);
+}
+
+.pokemon-card img {
+	width: 140px;
+	height: 140px;
+	object-fit: contain;
+}
+
+.pokemon-card h3 {
+	font-size: 22px;
+	text-transform: capitalize;
+	color: #1c1e2e;
+	margin: 4px 0;
+}
+
+/* Número da Pokédex: um cinza escuro suave, legível sobre o branco. */
+.pokemon-card-id {
+	display: block;
+	font-weight: 700;
+	color: #8a90a6;
+	font-size: 0.85rem;
+}
+
+.pokemon-card-types {
+	display: flex;
+	justify-content: center;
+	gap: 8px;
+	margin: 8px 0;
+}
+
+/* Lista de stats: rótulo em cinza escuro, valor em quase preto. */
+.pokemon-card-stats {
+	margin: 12px 0 0;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 6px 10px;
+}
+
+.pokemon-card-stats div {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.pokemon-card-stats dt {
+	font-size: 0.7rem;
+	font-weight: 700;
+	letter-spacing: 0.03em;
+	color: #6b7280;
+}
+
+.pokemon-card-stats dd {
+	margin: 0;
+	font-size: 0.95rem;
+	font-weight: 600;
+	color: #1c1e2e;
+}
